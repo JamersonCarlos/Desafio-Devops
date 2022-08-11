@@ -7,5 +7,7 @@ redis = Redis(host='redis', port=6379)
 
 
 def home(request):
-    
-    return render(request, 'home.html')
+    items = Item.objects.all()
+    return render(request, 'home.html', { 
+        'items':items
+    })
