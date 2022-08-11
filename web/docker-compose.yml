@@ -1,0 +1,27 @@
++version: "3.8"
+
+services: 
+  web: 
+    build: . 
+    command: python manage.py runserver 0.0.0.0:8000 
+    volumes:
+      - .:/code 
+    ports:
+      - 8000:8000 
+    depends_on:
+      - db 
+
+  db: 
+    image: postgres:13
+    environment: 
+      - SECRET_KEY=postgres
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASS=postgres
+      - DB_SERVICE=postgres
+      - DB_PORT=5432
+    volumes:
+      - db_data:/var/lib/db/data/
+  
+volumes:
+  db_data: {}

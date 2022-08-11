@@ -1,0 +1,16 @@
+FROM python3 
+
+ENV PYTHONDONOTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1 
+
+WORKDIR /code 
+
+COPY requeriments.txt . 
+RUN python -m pip install --upgrade pip 
+RUN pip install -r requeriments.txt
+RUN pip install django 
+
+COPY . . 
+
+
+
