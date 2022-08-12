@@ -3,7 +3,7 @@ version: "3.3"
 services: 
   web: 
     build: . 
-    command: python manage.py runserver 0.0.0.0:8000 
+    command: python manage.py runserver  
     volumes:
       - .:/code 
     ports:
@@ -13,6 +13,7 @@ services:
 
   db: 
     image: postgres:13
+    restart: always 
     environment: 
       - SECRET_KEY=postgres
       - DB_NAME=postgres
@@ -21,7 +22,7 @@ services:
       - DB_SERVICE=postgres
       - DB_PORT=5432
     volumes:
-      - db_data:/var/lib/db/data/
+      - postgres_data:/var/lib/postgresql/data/
   
 volumes:
-  db_data: {}
+  postgres_data: {}
